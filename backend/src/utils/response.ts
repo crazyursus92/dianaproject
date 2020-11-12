@@ -3,11 +3,8 @@ abstract class HttpResponse<T> implements IResponse<T> {
     data: T;
     status: string;
     message: string;
-}
 
-class ResponseSuccess<T> extends HttpResponse<T> {
-    constructor(data: T, code: number = 200, message: string = "success") {
-        super();
+    constructor(data: T, code: number = 200, message: string) {
         this.data = data;
         this.code = code;
         this.message = message;
@@ -15,12 +12,16 @@ class ResponseSuccess<T> extends HttpResponse<T> {
     }
 }
 
-class ResponseError<T> extends HttpResponse<T> {
+export class ResponseSuccess<T> extends HttpResponse<T> {
+    constructor(data: T, code: number = 200, message: string = "success") {
+        super(data, code, message);
+        this.status = "success";
+    }
+}
+
+export class ResponseError<T> extends HttpResponse<T> {
     constructor(data: T, code: number = 400, message: string = "error") {
-        super();
-        this.data = data;
-        this.code = code;
-        this.message = message;
+        super(data, code, message);
         this.status = "error";
     }
 }

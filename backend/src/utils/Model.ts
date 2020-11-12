@@ -25,6 +25,7 @@ export class Model {
     public load(value: any): Model {
         this.attributes.forEach(attribute => {
             if(value[attribute]){
+                // @ts-ignore
                 this[attribute] = value[attribute];
             }
         });

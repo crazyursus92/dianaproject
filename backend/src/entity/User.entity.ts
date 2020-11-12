@@ -3,27 +3,27 @@ import {IsEmail, IsNumber, IsOptional, IsString} from "class-validator";
 import {Model} from "../utils/Model";
 
 export interface IUser {
-    id: number;
-    firstName: string;
-    lastName: string;
+    id?: number;
+    firstName?: string;
+    lastName?: string;
     age?: number;
-    email: string;
-    password: string;
+    email?: string;
+    password?: string;
 }
 
-@Entity()
-export class User extends Model implements IUser {
+@Entity("users")
+export class UserEntity extends Model implements IUser {
 
     @PrimaryGeneratedColumn()
-    id: number;
+    id?: number;
 
     @Column()
     @IsString()
-    firstName: string;
+    firstName?: string;
 
     @Column()
     @IsString()
-    lastName: string;
+    lastName?: string;
 
     @Column()
     @IsNumber()
@@ -33,12 +33,12 @@ export class User extends Model implements IUser {
     @Column()
     @IsString()
     @IsEmail()
-    email: string;
+    email?: string;
 
     @Column()
     @IsString()
     @IsOptional()
-    password: string;
+    password?: string;
 
     protected attributes = [
         "id",
